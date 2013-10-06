@@ -22,6 +22,10 @@ ch.queue("bob",   :auto_delete => true).bind(x).subscribe do |delivery_info, met
   puts "#{payload} => bob"
 end
 
+ch.queue("bob",   :auto_delete => true).bind(x).subscribe do |delivery_info, metadata, payload|
+  puts "#{payload} => bob2"
+end
+
 x.publish("BOS 101, NYK 89").publish("ORL 85, ALT 88")
 
 conn.close
